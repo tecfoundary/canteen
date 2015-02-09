@@ -1,0 +1,119 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+
+  attributes:
+    bounced_at: Bounced
+    created_at: Created
+    id: ID
+    uuid: ID
+    updated_at: Updated
+    unsubscribed_at: Unsubscribed
+    cvc: CVC
+    expiry: Expiry
+  
+  plans:
+    plan: Choose a plan
+    freelance: Freelance
+    professional: Professional
+    premium: Premium
+
+  mongoid:
+    attributes:
+      campaign:
+        authorised_at: Authorised
+        account_segment: Segment
+        account_segment_id: Segment
+        bounce_soft_count: 'Soft Bounces'
+        bounce_hard_count: 'Hard Bounces'
+        campaign_type: Type
+        campaign_name: Name
+        click_count: 'Clicks'
+        content_html: HTML Content
+        content_text: Text Content
+        content_sms: Content
+        from: From
+        open_count: 'Opens'
+        segment: Segment
+        segment_id: Segment
+        sent_at: Sent
+        subject: Subject
+        unsubscribe_count: 'Unsubscribes'
+      subscriber:
+        city: City
+        address: Address
+        country: Country
+        customer_key: Key
+        dob: Date of Birth
+        email: Email
+        firstname: Given Names
+        lastname: Surname
+        mobile: Mobile
+        postcode: Postcode
+        suburb: Suburb
+        state: State
+      user:
+        current_sign_in_at: Last Login
+        email: Email
+        last_sign_in_at: Previous Login
+      models:
+        account: Account
+        campaign: Campaigners
+        subscriber: Subscriber
+
+  messages:
+    resource:
+      created: "Created %{type}: %{resource}."
+      destroyed: "Deleted %{type}: %{resource}."
+      missing_parameters: "Missing mandatory parameters for %{type}."
+      not_found: "Could not find %{type} matching %{criteria}: %{value}."
+      not_permitted: "You do not have permission to view %{type}: %{resource}."
+      not_valid: "Validation failed: %{errors}"
+      updated: "Updated %{type}: %{resource}."
+      tested: "Test message has been sent to %{resource}."
+    invite:
+      not_valid: Email address already taken or not valid. 
+      already_exists: User already exists    
+
+  lists:
+    country:
+      au: Australia
+      other: Other
+      us: USA
+    subscriber:
+      status:
+        active: Active
+        bounced: Bounced
+        unsubscribed: Unsubscribed
+
+  menu:
+    account: Account
+    campaigns: Campaigns
+    dashboard: Dashboard
+    root: app
+    login: Login
+    logout: Logout
+    register: Register
+    settings: Settings
+    subscribers: Subscribers
+
+  misc:
+    confirm: Confirm
+
+  verbs:
+    abort: Abort
+    all: All
+    authorise: Authorise
+    cancel: Cancel
+    confirm: Are you sure?
+    delete: Delete
+    edit: Edit
+    send: Send
+    index: List
+    login: Login
+    or: or
+    save: Save
+    show: View
+    test: Test
+

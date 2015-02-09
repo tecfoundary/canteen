@@ -1,0 +1,26 @@
+section.content
+  .row
+    .col-md-12
+      .box.box-warning
+        .box-header
+          h3.box-title
+            | Image Details
+        
+        = form_for Canteen::Image.new, url: product_images_path, class: 'form-horizontal' do |f|
+          .form-group
+            span.btn.btn-success.fileinput-button
+              span.glyphicon.glyphicon-plus
+              span   Add files...
+              = f.file_field :upload, name: "product[image]", multiple: true
+
+          .form-group
+            button.btn.btn-primary.start type="submit"
+              span.glyphicon.glyphicon-upload
+              span  Start upload
+
+      script#template-upload type="text/x-tmpl"
+        .upload
+          .progress.progress-striped
+            .progress-bar.progress-bar-primary style="width: 0%"
+    
+  

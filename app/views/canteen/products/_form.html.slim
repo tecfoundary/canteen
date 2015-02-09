@@ -1,0 +1,81 @@
+.box-body
+  .row
+    .col-xs-6
+      = f.label :name
+      = f.text_field :name, placeholder: 'Enter ...', class: 'form-control'
+    .col-xs-3
+      = f.label :sku
+      = f.text_field :sku, placeholder: 'Enter ...', class: 'form-control'
+  br
+  .row
+    .col-xs-3
+      = f.label :cost_price
+      .input-group
+        span.input-group-addon
+          | $
+        = f.text_field :cost_price, placeholder: 'Enter ...', class: 'form-control'
+        span.input-group-addon
+          | .00
+    .col-xs-3
+      = f.label :sell_price
+      .input-group
+        span.input-group-addon
+          | $
+        = f.text_field :sell_price, placeholder: 'Enter ...', class: 'form-control'
+        span.input-group-addon
+          | .00
+    .col-xs-3
+      = f.label :discount
+      .input-group
+        = f.text_field :discount, placeholder: 'Enter ...', class: 'form-control'
+        span.input-group-addon
+          | %
+  br
+  .row
+    .col-xs-9
+      = f.label :description
+      = f.text_area :description, placeholder: 'Enter ...', rows: '5', class: 'form-control'
+  br
+  .row
+    .col-xs-3
+      = f.label :type
+      = f.text_field :type, placeholder: 'Enter ...', class: 'form-control'    
+    .col-xs-3
+      = f.label :size
+      = f.text_field :size, placeholder: 'Enter ...', class: 'form-control'
+    .col-xs-3
+      = f.label :material
+      = f.text_field :material, placeholder: 'Enter ...', class: 'form-control'  
+  / - unless current_page? new_product_path
+  /   br
+  /   - @product.images.each_with_index do |image, index|
+  /     = f.fields_for :images_remove do |r|
+  /       - if index % 3 == 0
+  /         .row
+  /       .col-xs-3
+  /         = image_tag image.file_url
+  /         br
+  /         .checkbox
+  /           label
+  /             = r.check_box image.id, checked: false
+  /             | Remove image
+
+  / br
+  / .row
+  /   .col-xs-9
+  /     .form-group
+  /       = f.label :images
+  /       .form-control
+  /         .col-xs-1 style="padding-left: 0px; padding-right: 0px;"
+  /           .btn.btn-default.btn-xs
+  /             = f.file_field :images, id: "image-upload", mulitple: true, class: 'fileInput'
+  /             | Browse
+  /         .col-xs-10.col-md-10
+  /           = f.text_field :name, id: "image-name", placeholder: 'Name of File...', style: "border: 0px;"
+
+.box-footer
+  button.btn.btn-primary[type="submit"]
+    | Submit 
+
+
+

@@ -1,0 +1,85 @@
+section.content.invoice
+  .row
+    .col-xs-6
+      - @product.images.each do |i|
+        = image_tag i.file.thumb.url, alt: "#{i.file.identifier}", class: 'margin'
+      div id="uploads"
+      #dropzone
+        = image_tag 'canteen/dnd.png', class: 'img-responsive center-block'
+
+        strong
+          p.text-center Or  
+        = form_for Canteen::Image.new, url: product_images_path(product_id: @product.id), role: 'form', class: 'form-horizontal' do |f|
+          .col-xs-offset-3.col-xs-6
+            span.btn.btn-primary.btn-xs.btn-block.fileinput-button
+              span.glyphicon.glyphicon-plus
+              span   Upload Images...
+              = f.file_field :file, name: "image[file]", multiple: true
+          .col-xs-3
+      script#template-upload type="text/x-tmpl"
+        .upload
+          .progress.progress-striped
+            .progress-bar.progress-bar-primary style="width: 0%"
+
+    .col-xs-6
+      p.lead
+        | Description
+      .text-muted.well.well-sm.no-shadow[style="margin-top: 10px;"]
+        = render_markdown @product.description
+        
+      p.lead
+        | Details
+      .table-responsive
+        table.table
+          tr
+            th[style="width:50%"]
+              | Name:
+            td
+              = @product.name
+              |  [
+              = @product.sku
+              |
+          tr
+            th
+              | Cost Price:
+            td
+              | $
+              = @product.cost_price
+          tr
+            th
+              | Sell Price:
+            td
+              | $
+              = @product.sell_price
+          tr
+            th
+              | Discount:
+            td
+              = @product.discount
+              |  %
+          tr
+            th
+              | Type:
+            td= @product.type
+          tr
+            th
+              | Size:
+            td= @product.size
+          tr
+            th
+              | Material:
+            td= @product.material
+  .row
+    .col-xs-12
+      .col-xs-1.pull-right
+        = link_to t('back'), products_path, class: 'btn btn-default pull-right'
+      .col-xs-1.pull-right
+        = link_to edit_product_path(@product), class: 'btn btn-success pull-right' do
+          i.fa.fa-edit
+          '   
+          = t 'edit'                  
+      / .col-xs-1.pull-right
+      /   = link_to product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: ' btn-spacer btn btn-danger pull-right'
+      /     i.fa.fa-warning
+      /     '  
+      /     = t 'delete'      

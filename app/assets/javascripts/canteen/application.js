@@ -1,0 +1,16 @@
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require turbolinks
+//= require twitter/bootstrap
+//= require admin-lte
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+// require pagedown_bootstrap
+// require pagedown_init
+//= require canteen/pagedown-bootstrap/pagedown_bootstrap
+//= require canteen/pagedown-bootstrap/pagedown_init
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/extras/dataTables.responsive
+//= require_tree .

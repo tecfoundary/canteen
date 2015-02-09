@@ -1,0 +1,27 @@
+- if current_page?(action: 'new')
+  - heading = 'New'
+  - subheading = 'Add'
+- elsif current_page?(action: 'new')
+  - heading = 'Edit'
+  - subheading = 'Update'
+- elsif current_page?(action: 'new')
+  - subheading = 'Info'
+- else
+  - subheading = 'List'
+
+section.content-header
+  h1
+    | #{heading} #{(current_page?(action: 'index') ? controller_name.camelize : controller_name.singularize.camelize)}
+    small
+      | #{subheading}
+  ol.breadcrumb
+    li
+      a href=products_path
+        i.fa.fa-dashboard
+        |  Home
+    li class=(current_page?(eval("#{controller_name}_path")) ? :active : nil)
+      a href="#{controller_name}_path"
+        = controller_name.camelize
+    - unless current_page?(eval("#{controller_name}_path"))
+      li.active
+        | #{heading} #{controller_name.singularize.camelize}

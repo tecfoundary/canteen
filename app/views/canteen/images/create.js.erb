@@ -1,0 +1,4 @@
+<% unless @image.new_record? %>
+  $("#uploads").append("<%= j image_tag @image.file.thumb.url, alt: "#{@image.file.identifier}", class: 'margin' %>");
+  $(".progress").remove();
+<% end %>

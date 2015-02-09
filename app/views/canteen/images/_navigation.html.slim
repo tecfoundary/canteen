@@ -1,0 +1,19 @@
+- if current_page?(action: 'new')
+  - heading = 'New'
+  - subheading = 'Add'
+- elsif current_page?(action: 'new')
+  - heading = 'Edit'
+  - subheading = 'Update'
+- else
+  - subheading = 'List'
+
+section.content-header
+  h1
+    | #{heading} #{(current_page?(action: 'index') ? controller_name.camelize : controller_name.singularize.camelize)}
+    small
+      | #{subheading}
+  ol.breadcrumb
+    li
+      a href=products_path
+        i.fa.fa-dashboard
+        |  Home

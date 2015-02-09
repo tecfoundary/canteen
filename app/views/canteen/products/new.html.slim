@@ -1,0 +1,9 @@
+section.content
+  .row
+    .col-md-12
+      .box.box-warning
+        .box-header
+          h3.box-title
+            | Product Details
+        = form_for :product, url: products_path, role: 'form' do |f|
+          = render partial: 'form', locals: { f: f }
