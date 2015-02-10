@@ -37,7 +37,7 @@ module Canteen
     public
 
     def after_sign_in_path_for(resource)
-      return request.env['omniauth.origin'] || stored_location_for(resource) || '/hicube/pages'
+      return request.env['omniauth.origin'] || stored_location_for(resource) || '/canteen/products'
     end
 
     # Generate a notification message.

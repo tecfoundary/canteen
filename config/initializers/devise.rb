@@ -2,7 +2,7 @@ module Canteen
   module Devise
     class FailureApp < ::Devise::FailureApp
 
-      # include ::Hicube::Engine.routes
+      # include ::Canteen::Engine.routes
 
       def redirect_url
         # FIXME: Not sure why cannot see new_user_session_path here
