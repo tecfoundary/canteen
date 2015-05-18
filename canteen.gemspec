@@ -19,9 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.0"
 
-  # Admin theme
-  s.add_dependency "adminlte-rails"
-
   # Image manas.add_dependencyent
   s.add_dependency "carrierwave-aws"
 
@@ -31,61 +28,66 @@ Gem::Specification.new do |s|
   # Security
   s.add_dependency "devise"
 
-  # Templating
   s.add_dependency "liquid"
 
-  s.add_dependency 'jquery-datatables-rails', '~> 3.1.1'
-
-  s.add_dependency 'jquery-fileupload-rails', '~> 0.4.4'
-  
-  # Use jQuery as the JavaScript library
-  s.add_dependency "jquery-rails", "~> 4.0.0.beta2"
-
-  # This makes links to work as per prior to RAILS v 4.0.
-  s.add_dependency "jquery-turbolinks"
-
-  # Pagination
-  s.add_dependency "kaminari"
-
-  # Bootstrap
-  s.add_dependency "less-rails-bootstrap"
-
-  # Rails Fontawesome support
-  s.add_dependency "font-awesome-rails"
-
-  # Used by Carrierwave to do image resizing
-  s.add_dependency "mini_magick"
+  # Google Analytics
+  s.add_dependency "google-analytics-rails"
 
   # Mongoid
   s.add_dependency "mongoid"
 
-  # To generate page names in paths
-  s.add_dependency "mongoid-slug"
-
   # For migrations
   s.add_dependency "mongoid_rails_migrations"
+
+  # Running active jobs
+  s.add_dependency "delayed_job_mongoid"
   
-  # Pagedown - markup editor used by Stackoverflow
-  # Manually importing so behaviour can be modified for image & link dialogs
-  # s.add_dependency "pagedown-bootstrap-rails"
+  s.add_dependency 'coffee-rails', '~> 4.1.0'
 
-  # Required by Slim engine to render markdown
-  s.add_dependency "redcarpet"
+  # Rails Fontawesome support
+  s.add_dependency 'font-awesome-rails'
 
-  # Slim Templates
-  s.add_dependency "slim-rails"
+  # FullCalendar js by Adam Shaw - http://arshaw.com/fullcalendar/
+  s.add_dependency 'fullcalendar-rails'
+
+  # For checkboxes & radioboxes with Adminlte
+  s.add_dependency 'icheck-rails'
+
+  # Ion icons 
+  s.add_dependency 'ionicons-rails'
+
+  # Use jQuery as the JavaScript library
+  s.add_dependency 'jquery-rails'
+
+  s.add_dependency 'jquery-datatables-rails', '~> 3.1.1'
+
+  s.add_dependency 'jquery-fileupload-rails'
+
+  # This makes links to work as per earlier.
+  s.add_dependency 'jquery-turbolinks'
+
+  # Used by Adminlte theme on calendar page
+  s.add_dependency 'jquery-ui-rails'
+
+  # Bootstrap
+  s.add_dependency 'less-rails-bootstrap'
+
+  # Used by Carrierwave to do image resizing
+  s.add_dependency "mini_magick"
+
+ s.add_dependency "redcarpet"
+ 
+  # Dependency for fullCalendar s.add_dependency
+  s.add_dependency 'momentjs-rails'
 
   # Use SCSS for stylesheets
-  s.add_dependency "sass-rails", "~> 5.0.0.beta1"
+  s.add_dependency 'sass-rails', '~> 5.0'
 
-  # Use CoffeeScript for .coffee assets and views
-  s.add_dependency "coffee-rails", "~> 4.1.0"
+  # Slim Templates
+  s.add_dependency 'slim-rails'
 
   # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-  s.add_dependency "turbolinks"
-
-  # needed as bootstrap rails uses less
-  s.add_dependency 'therubyracer'
+  s.add_dependency 'turbolinks'
 
   # Use Uglifier as compressor for JavaScript assets
   s.add_dependency "uglifier", ">= 1.3.0"

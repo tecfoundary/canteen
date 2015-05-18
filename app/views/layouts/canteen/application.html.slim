@@ -4,22 +4,23 @@ html
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
 
-    / FIXME: This data should be part of seed
     title #{app_name}
-    = analytics_init if Rails.env.production?
     = stylesheet_link_tag 'canteen/application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'canteen/application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body class=body_class
-    - if params[:controller].include?('devise')
-      = yield
-    - else
-      = render partial: 'layouts/canteen/header'
-      .wrapper.row-offcanvas.row-offcanvas-left
-        aside.left-side.sidebar-offcanvas
-          = render :partial => 'layouts/canteen/sidebar'
-        aside.right-side
-          = render partial: 'layouts/canteen/flash_messages'
+  - if devise_controller?
+    = yield
+  - else
+    - logger.debug "#{controller}"
+    body.skin-purple
+      .wrapper
+        = render partial: 'header'
+        aside.main-sidebar
+          = render partial: 'sidebar'
+        .content-wrapper
+          = render partial: 'flash'
           = render partial: 'navigation'
           = yield
+        footer.main-footer
+          = render partial: 'footer'

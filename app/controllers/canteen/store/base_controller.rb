@@ -1,17 +1,9 @@
 module Canteen
-  class BaseController < Canteen::ApplicationController
+  class Store::BaseController < ApplicationController
 
-    before_action :authenticate_user!
-    before_filter :initialise_current_user
-
-    layout 'canteen/application'
-
+    layout 'application'
+    
     private
-
-    def initialise_current_user
-      return unless user_signed_in?
-      User.current = current_user
-    end
 
     # Check resource params are present based on the current controller name.
     def check_resource_params(options = {})
@@ -74,6 +66,5 @@ module Canteen
       #FIXME: Do not hard code Canteen here
       instance_variable_set("@#{resource_name}", "Canteen::#{resource_name.singularize.camelize}".classify.constantize.all)
     end
-
   end
 end

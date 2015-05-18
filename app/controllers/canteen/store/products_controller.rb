@@ -1,28 +1,24 @@
 module Canteen
-  class Shop::ProductsController < Shop::BaseController
+  class Store::ProductsController < Store::BaseController
 
     before_action :load_resource, except: [
       :create,
       :index,
-      :new,
-      :home
+      :new
     ]
 
     before_filter :load_resources, :only => [
-      :index,
-      :home
+      :index
     ]
 
     # Must be called after load_recource filter.
     before_filter :check_resource_params, :only => [
       :create,
-      :update,
+      :update
     ]
 
     def index
     end
 
-    def home
-    end
   end
 end

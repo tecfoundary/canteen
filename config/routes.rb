@@ -9,14 +9,15 @@ Canteen::Engine.routes.draw do
     module:      :devise
 
   resources :products do
-    resources :images
+    member do
+      post :image
+    end
+    # resources :images
   end
-end
 
-Rails.application.routes.draw do
-  
-  root 'canteen/shop/products#home'
+  resource :dashboard
 
-  resources :products, controller: 'canteen/shop/products', only: [:index, :show]
-
+  scope module: 'store' do
+    resources :products, as: 'store', path: '/'
+  end
 end

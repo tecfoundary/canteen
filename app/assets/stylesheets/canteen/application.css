@@ -1,11 +1,20 @@
-//= require font-awesome
-//= require twitter/bootstrap
-//= require admin-lte
-//= require jquery.fileupload
-//= require jquery.fileupload-ui
-// require pagedown_bootstrap
-//= require canteen/pagedown-bootstrap/pagedown_bootstrap
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require dataTables/extras/dataTables.responsive
-//= require_tree .
-//= require_self
+/*
+ *= require jquery-ui
+ *= require font-awesome
+ *= require twitter/bootstrap
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require dataTables/extras/dataTables.responsive
+ *= require icheck/square/blue
+ *= require icheck/minimal/blue
+ *= require icheck/flat/blue
+ *= require ionicons
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
+ 
+ * Adminlte and corresponding css
+ *= require admin-lte
+ *= require skin-purple
+ *= 
+ *= require_tree .
+ *= require_self
+ */

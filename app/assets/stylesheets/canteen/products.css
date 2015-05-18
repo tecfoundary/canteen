@@ -24,8 +24,8 @@
 */
 
 #dropzone.in {
-  width: 350px;
-  height: 250px;
+  /*width: 150px;
+  height: 100px;*/
   /*line-height: 200px;    */
   border-style: dashed;
 }
@@ -42,3 +42,18 @@
   transition: all 0.3s ease-out;
   opacity: 1;
 }
+
+.carousel-inner img {
+  margin: auto;
+}
+
+.hover-btn {
+   position: absolute;
+   right: 15px;
+   display: none;
+}
+
+.col-xs-2:hover .hover-btn {
+   display: block;
+}
+

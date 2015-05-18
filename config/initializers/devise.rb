@@ -6,8 +6,7 @@ module Canteen
 
       def redirect_url
         # FIXME: Not sure why cannot see new_user_session_path here
-        # new_user_session_path
-        '/canteen/sign_in'
+        '/store/sign_in'
       end
     
     end

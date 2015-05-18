@@ -1,51 +1,91 @@
 .box-body
   .row
     .col-xs-6
-      = f.label :name
-      = f.text_field :name, placeholder: 'Enter ...', class: 'form-control'
-    .col-xs-3
-      = f.label :sku
-      = f.text_field :sku, placeholder: 'Enter ...', class: 'form-control'
-  br
-  .row
-    .col-xs-3
-      = f.label :cost_price
-      .input-group
-        span.input-group-addon
-          | $
-        = f.text_field :cost_price, placeholder: 'Enter ...', class: 'form-control'
-        span.input-group-addon
-          | .00
-    .col-xs-3
-      = f.label :sell_price
-      .input-group
-        span.input-group-addon
-          | $
-        = f.text_field :sell_price, placeholder: 'Enter ...', class: 'form-control'
-        span.input-group-addon
-          | .00
-    .col-xs-3
-      = f.label :discount
-      .input-group
-        = f.text_field :discount, placeholder: 'Enter ...', class: 'form-control'
-        span.input-group-addon
-          | %
-  br
-  .row
-    .col-xs-9
-      = f.label :description
-      = f.text_area :description, placeholder: 'Enter ...', rows: '5', class: 'form-control'
-  br
-  .row
-    .col-xs-3
-      = f.label :type
-      = f.text_field :type, placeholder: 'Enter ...', class: 'form-control'    
-    .col-xs-3
-      = f.label :size
-      = f.text_field :size, placeholder: 'Enter ...', class: 'form-control'
-    .col-xs-3
-      = f.label :material
-      = f.text_field :material, placeholder: 'Enter ...', class: 'form-control'  
+      .form-group
+        = f.label :name
+        = f.text_field :name, placeholder: 'Enter ...', class: 'form-control'
+      .form-group
+          = f.label :sku
+          = f.text_field :sku, placeholder: 'Enter ...', class: 'form-control'
+      .form-group
+        = f.label :cost_price
+        .input-group
+          span.input-group-addon
+            | $
+          = f.text_field :cost_price, placeholder: 'Enter ...', class: 'form-control'
+          span.input-group-addon
+            | .00
+      .form-group
+        = f.label :retail_price
+        .input-group
+          span.input-group-addon
+            | $
+          = f.text_field :retail_price, placeholder: 'Enter ...', class: 'form-control'
+          span.input-group-addon
+            | .00
+      .form-group
+        = f.label :discount
+        .input-group
+          = f.text_field :discount, placeholder: 'Enter ...', class: 'form-control'
+          span.input-group-addon
+            | %
+      .form-group
+        = f.label :type
+        = f.text_field :type, placeholder: 'Enter ...', class: 'form-control'    
+      .form-group
+        = f.label :size
+        = f.text_field :size, placeholder: 'Enter ...', class: 'form-control'
+      .form-group
+        = f.label :material
+        = f.text_field :material, placeholder: 'Enter ...', class: 'form-control'  
+      .form-group
+        = f.file_field :images, multiple: true
+    .col-xs-6
+      .form-group
+        = f.label :description
+        = f.text_area :description, placeholder: 'Enter ...', rows: '27', class: 'form-control'
+
+  - unless @product.nil?
+    .row#product-images
+      - @product.images.each do |i|
+        .col-xs-2
+          .hover-btn
+            = link_to image_product_path(id: @product.id.to_s, remove_image: i.id.to_s), method: :post, remote: true do
+              span aria-hidden="true" x
+              span.sr-only Close
+          = image_tag i.file.thumb.url, class: 'img-thumbnail'
+
+.box-footer
+  = f.submit 'Save', class: 'btn btn-primary pull-right'
+  = link_to 'Cancel', products_path, class: 'btn btn-default'
+
+  / - unless @product.nil?
+  /   .row
+  /     #product-images
+  /       - @product.images.each do |i|
+  /         .col-xs-2
+  /           .hover-btn
+  /             = link_to image_product_path(id: @product.id.to_s, remove_image: i.id.to_s), method: :post, remote: true do
+  /               span aria-hidden="true" x
+  /               span.sr-only Close
+  /           = image_tag i.file.thumb.url, class: 'img-thumbnail'
+  
+  /     .col-xs-2
+  /       #dropzone
+  /         = image_tag 'canteen/dnd.png', alt: 'drag-n-drop', class: 'img-thumbnail', size: "120x120"
+  /         = f.file_field :images, multiple: true, class: 'fileInput'
+  /   .row
+  /     script#template-upload type="text/x-tmpl"
+  /       .upload
+  /         .progress.progress-striped
+  /           .progress-bar.progress-bar-primary style="width: 0%"
+        
+
+
+
+
+
+  
   / - unless current_page? new_product_path
   /   br
   /   - @product.images.each_with_index do |image, index|
@@ -72,10 +112,3 @@
   /             | Browse
   /         .col-xs-10.col-md-10
   /           = f.text_field :name, id: "image-name", placeholder: 'Name of File...', style: "border: 0px;"
-
-.box-footer
-  button.btn.btn-primary[type="submit"]
-    | Submit 
-
-
-

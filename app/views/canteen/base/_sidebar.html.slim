@@ -1,0 +1,87 @@
+section.sidebar
+  .user-panel
+    .pull-left.image
+      = image_tag 'avatar.png', alt: "User Image", class: 'img-circle'
+    .pull-left.info
+      p
+        | Hello, #{current_user.name}
+      a[href="#"]
+        i.fa.fa-circle.text-success
+        |  Online
+  form.sidebar-form[action="#" method="get"]
+    .input-group
+      input.form-control[type="text" name="q" placeholder="Search..."]
+      span.input-group-btn
+        button#search-btn.btn.btn-flat[type="submit" name="search"]
+          i.fa.fa-search
+  ul.sidebar-menu
+    li.header MAIN NAVIGATION
+    li class=sidebar_class(:show, :dashboard)
+      = link_to dashboard_path
+        i.fa.fa-dashboard
+        span
+          | Dashboard
+        small.badge.pull-right.bg-green
+          | new
+    li.treeview class=(sidebar_class(:new, :product) || sidebar_class(:edit, :product) || sidebar_class(:index, :product) || sidebar_class(:show, :product))
+      a href="#"
+        i.fa.fa-users
+        span
+          = t 'products'
+        i.fa.fa-angle-left.pull-right
+      ul.treeview-menu
+        li class=sidebar_class(:index, :product)
+          a href=products_path
+            i.fa.fa-angle-double-right
+            = t 'list'
+        li class=sidebar_class(:new, :product)
+          a href=new_product_path
+            i.fa.fa-angle-double-right
+            = t 'new'
+        - unless sidebar_class(:edit, :product).nil? and sidebar_class(:show, :product).nil?
+          li class=(sidebar_class(:edit, :product) or sidebar_class(:show, :product))
+            a href=""
+              i.fa.fa-angle-double-right
+              = @product
+
+  /   li.treeview class=(sidebar_class(:new, :rate) || sidebar_class(:edit, :rate) || sidebar_class(:index, :rate) || sidebar_class(:show, :rate))
+  /     a href="#"
+  /       i.fa.fa-usd
+  /       span
+  /         | Rates
+  /       i.fa.fa-angle-left.pull-right
+  /     ul.treeview-menu
+  /       li class=sidebar_class(:index, :rate)
+  /         a href=users_rates_path
+  /           i.fa.fa-angle-double-right
+  /           = t 'list'
+  /       li class=sidebar_class(:new, :rate)
+  /         a href=new_users_rate_path
+  /           i.fa.fa-angle-double-right
+  /           = t 'new'
+  /       - unless sidebar_class(:edit, :rate).nil? and sidebar_class(:show, :product).nil?
+  /         li class=(sidebar_class(:show, :rate) or sidebar_class(:edit, :rate))
+  /           a href=""
+  /             i.fa.fa-angle-double-right
+  /             = @rate 
+
+  /   li.treeview class=(sidebar_class(:new, :worker) || sidebar_class(:edit, :worker) || sidebar_class(:index, :worker) || sidebar_class(:show, :worker))
+  /     a href="#"
+  /       i.fa.fa-user-md
+  /       span
+  /         | Staff
+  /       i.fa.fa-angle-left.pull-right
+  /     ul.treeview-menu
+  /       li class=sidebar_class(:index, :worker)
+  /         a href=users_workers_path
+  /           i.fa.fa-angle-double-right
+  /           = t 'list'
+  /       li class=sidebar_class(:new, :worker)
+  /         a href=new_users_worker_path
+  /           i.fa.fa-angle-double-right
+  /           = t 'new'
+  /       - unless sidebar_class(:edit, :worker).nil? and sidebar_class(:show, :worker).nil?
+  /         li class=(sidebar_class(:show, :worker) or sidebar_class(:edit, :worker))
+  /           a href=""
+  /             i.fa.fa-angle-double-right
+  /             = @worker

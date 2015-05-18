@@ -20,8 +20,8 @@ module Canteen
     field :nm, type: String,
       as:         :name
 
-    field :sp, type: Float,
-      as:         :sell_price
+    field :rp, type: Float,
+      as:         :retail_price
 
     field :cp, type: Float,
       as:         :cost_price
@@ -50,13 +50,27 @@ module Canteen
 
 
     # Validations
-    validates_presence_of   :name, :sku, :sell_price, :cost_price, :description
+    validates_presence_of   :name, :sku, :retail_price, :cost_price, :description
     validates_uniqueness_of :sku
 
     public 
-    
+
+    def to_s
+      self.name
+    end
+
     def discount?
-      self.discount.nil? ? false : self.discount > 0
+      self.discount.nil? ? false : (self.discount > 0)
+    end
+
+    def sale_price
+      return self.retail_price unless self.discount?
+      return (self.retail_price * (1-(self.discount.to_f/100))).to_i
+    end
+
+    # Return feature image
+    def image
+      self.images.exists? ? self.images.first.file_url : ActionController::Base.new.view_context.image_path('noimagefound.png')
     end
   end
 end

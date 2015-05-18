@@ -1,20 +1,5 @@
 module Canteen
   class ProductsController < Canteen::BaseController
-    CREATE_UPDATE_ATTRIBUTES = [
-    :name,
-    :sku,
-    :cost_price,
-    :sell_price,
-    :discount,
-    :description,
-    :type,
-    :size,
-    :material
-    ]
-
-    PERMITTED_PARAMS = [
-      CREATE_UPDATE_ATTRIBUTES,
-    ]
 
     before_action :load_resource, except: [
       :create,
@@ -29,17 +14,16 @@ module Canteen
     # Must be called after load_recource filter.
     before_filter :check_resource_params, :only => [
       :create,
-      :update,
+      :update
     ]
 
     def create
       logger.debug "Creating Product with #{params}"
-      @product = Canteen::Product.new(params[:product].slice(*CREATE_UPDATE_ATTRIBUTES))
-      
+      @product = Canteen::Product.new product_params.except(:images)
       @product.save!
 
       # Save images if uploaded
-      # params[:product][:images].each { |i| @product.images.create! file: i }
+      product_params[:images].each { |i| @product.images.create! file: i } if product_params.has_key?(:images)
       
       respond_to do |format|
         notify :notice, ::I18n.t('messages.resource.created',
@@ -61,34 +45,36 @@ module Canteen
     def edit
     end
 
+    def index
+    end
+
+    def image
+      img = @product.images.find(params[:remove_image])
+      img.delete
+      head :ok, content_type: "text/html"
+    end
+    
     def new
     end
 
     def update
-      logger.debug "Updating Product with #{params}"
-      @product.update_attributes(params[:product].slice(*CREATE_UPDATE_ATTRIBUTES))
-
+      @product.update_attributes product_params.except(:images)
       @product.save!
 
-      # Save images if uploaded
-      # params[:product][:images].each { |i| @product.images.create! file: i } if params[:product].has_key?(:images)
-
-      # Remove images if requested 
-      # unless params[:product][:images_remove].nil?
-      #   params[:product][:images_remove].each do |k,v| 
-      #     if v.eql?("1")
-      #       @product.images.find(k).file.remove! 
-      #       @product.images.find(k).delete
-      #     end
-      #   end 
-      # end
+      product_params[:images].each { |i| @product.images.create! file: i } if product_params.has_key?(:images)
+      # @product.images.create! file: params[:product][:images]
           
       respond_to do |format|
-        notify :notice, ::I18n.t('messages.resource.created',
-          :type       => Product.model_name.human,
-          :resource   => @product
-        )
-        format.html { redirect_to action: :show, id: @product }
+        format.html { 
+          notify :notice, ::I18n.t('messages.resource.updated',
+            :type       => Product.model_name.human,
+            :resource   => @product
+          )
+          redirect_to action: :show, id: @product 
+        }
+        format.js { # For file drag and drop
+          @image = @product.images.last
+        }
       end
     rescue Mongoid::Errors::Validations => e
       respond_to do |format|
@@ -103,13 +89,7 @@ module Canteen
     private
 
     def product_params
-      params.require(:product).permit(*PERMITTED_PARAMS)
-      # params.require(:product).permit(*PERMITTED_PARAMS).tap do |whitelisted|
-
-      #   # grrrr.....Nested attributes need to overriden in this fashion
-      #   whitelisted[:images] = params[:product][:images]
-      #   whitelisted[:images_remove] = params[:product][:images_remove]
-      # end
+      params.require(:product).permit(:name, :sku, :cost_price, :retail_price, :discount, :description, :type, :size,:material, :destroy_image, :images => [])
     end
   
   end
