@@ -3,7 +3,36 @@ jQuery ->
 
   $('#product-images .hover-btn a').click  ->
     $(this).closest('.col-xs-2').remove()
-  return
+    return
+  
+  substringMatcher = (strs) ->
+    (q, cb) ->
+      matches = undefined
+      substringRegex = undefined
+      # an array that will be populated with substring matches
+      matches = []
+      # regex used to determine if a string contains the substring `q`
+      substrRegex = new RegExp(q, 'i')
+      # iterate through the pool of strings and for any string that
+      # contains the substring `q`, add it to the `matches` array
+      $.each strs, (i, str) ->
+        if substrRegex.test(str)
+          matches.push str
+        return
+      cb matches
+      return
+
+  $('#product-table tbody').on 'click', 'tr', ->
+    console.log "Clicked"
+    redirection = $(this).attr('id')
+    console.log "id " + redirection
+    document.location.href = redirection
+    return
+
+  $('#category .typeahead').typeahead {hint: true, highlight: true, minLength: 1}, {name: 'categories', source: substringMatcher(categories)}
+  $('#sub-category .typeahead').typeahead {hint: true, highlight: true, minLength: 1}, {name: 'sub-categories', source: substringMatcher(sub_categories)}
+
+
 
 $(document).bind 'dragover', (e) ->
   dropZone = $('#dropzone')
@@ -31,23 +60,3 @@ $(document).bind 'dragover', (e) ->
     return
   ), 100)
   return
-
-
-  # $('#product_images').fileupload
-  #   dataType: "script"
-  #   add: (e, data) ->
-  #     types = /(\.|\/)(gif|jpe?g|png)$/i
-  #     file = data.files[0]
-  #     if types.test(file.type) || types.test(file.name)
-  #       data.context = $(tmpl("template-upload", file))
-  #       $('#edit_product').append(data.context)
-  #       data.submit()
-  #     else
-  #       alert("#{file.name} is not a gif, jpeg, or png image file")
-  #   progress: (e, data) ->
-  #     if data.context
-  #       progress = parseInt(data.loaded / data.total * 100, 10)
-  #       data.context.find('.progress-bar').css('width', progress + '%')
-  #       # $('.progress-bar').css('width', progress + '%')
-  #   dropZone: $('#dropzone')
-  # return

@@ -2,6 +2,7 @@
  *= require jquery-ui
  *= require font-awesome
  *= require twitter/bootstrap
+ *= require twitter/typeahead
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require dataTables/extras/dataTables.responsive
  *= require icheck/square/blue
@@ -18,3 +19,4 @@
  *= require_tree .
  *= require_self
  */
+

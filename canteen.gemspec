@@ -75,7 +75,7 @@ Gem::Specification.new do |s|
   # Used by Carrierwave to do image resizing
   s.add_dependency "mini_magick"
 
- s.add_dependency "redcarpet"
+  s.add_dependency "redcarpet"
  
   # Dependency for fullCalendar s.add_dependency
   s.add_dependency 'momentjs-rails'

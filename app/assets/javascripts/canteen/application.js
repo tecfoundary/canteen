@@ -4,6 +4,7 @@
 //= require jquery-ui
 //= require turbolinks
 //= require twitter/bootstrap
+//= require twitter/typeahead.jquery.min
 //= require jquery-fileupload
 
 //= require dataTables/jquery.dataTables

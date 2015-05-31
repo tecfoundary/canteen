@@ -4,9 +4,30 @@
       .form-group
         = f.label :name
         = f.text_field :name, placeholder: 'Enter ...', class: 'form-control'
+        .row
+          .col-xs-4
+            .checkbox.iCheck
+              = f.check_box :showcase, class: 'minimal'
+              |  Showcase
+          .col-xs-6
+            .checkbox.iCheck
+              = f.check_box :new_arrival, class: 'minimal'
+              |  New Arrival
+   
       .form-group
           = f.label :sku
           = f.text_field :sku, placeholder: 'Enter ...', class: 'form-control'
+      .form-group
+          = f.label :description
+          = f.text_field :description, placeholder: 'Enter ...', class: 'form-control'
+      .form-group
+          = f.label :category 
+          div#category
+            = f.text_field :category, placeholder: 'Category ...', class: 'form-control typeahead'
+      .form-group
+        = f.label :sub_category    
+        div#sub-category
+          = f.text_field :sub_category, placeholder: 'Sub-Category ...', class: 'form-control typeahead'
       .form-group
         = f.label :cost_price
         .input-group
@@ -30,21 +51,15 @@
           span.input-group-addon
             | %
       .form-group
-        = f.label :type
-        = f.text_field :type, placeholder: 'Enter ...', class: 'form-control'    
-      .form-group
-        = f.label :size
-        = f.text_field :size, placeholder: 'Enter ...', class: 'form-control'
-      .form-group
-        = f.label :material
-        = f.text_field :material, placeholder: 'Enter ...', class: 'form-control'  
-      .form-group
         = f.file_field :images, multiple: true
     .col-xs-6
       .form-group
-        = f.label :description
-        = f.text_area :description, placeholder: 'Enter ...', rows: '27', class: 'form-control'
-
+        = f.label :details
+        = f.text_area :details, placeholder: 'Enter ...', rows: '27', class: 'form-control'
+      / .form-group
+      /   = f.label :size
+      /   = f.text_area :size, placeholder: 'Enter ...', rows: '16', class: 'form-control'
+      
   - unless @product.nil?
     .row#product-images
       - @product.images.each do |i|
@@ -58,57 +73,3 @@
 .box-footer
   = f.submit 'Save', class: 'btn btn-primary pull-right'
   = link_to 'Cancel', products_path, class: 'btn btn-default'
-
-  / - unless @product.nil?
-  /   .row
-  /     #product-images
-  /       - @product.images.each do |i|
-  /         .col-xs-2
-  /           .hover-btn
-  /             = link_to image_product_path(id: @product.id.to_s, remove_image: i.id.to_s), method: :post, remote: true do
-  /               span aria-hidden="true" x
-  /               span.sr-only Close
-  /           = image_tag i.file.thumb.url, class: 'img-thumbnail'
-  
-  /     .col-xs-2
-  /       #dropzone
-  /         = image_tag 'canteen/dnd.png', alt: 'drag-n-drop', class: 'img-thumbnail', size: "120x120"
-  /         = f.file_field :images, multiple: true, class: 'fileInput'
-  /   .row
-  /     script#template-upload type="text/x-tmpl"
-  /       .upload
-  /         .progress.progress-striped
-  /           .progress-bar.progress-bar-primary style="width: 0%"
-        
-
-
-
-
-
-  
-  / - unless current_page? new_product_path
-  /   br
-  /   - @product.images.each_with_index do |image, index|
-  /     = f.fields_for :images_remove do |r|
-  /       - if index % 3 == 0
-  /         .row
-  /       .col-xs-3
-  /         = image_tag image.file_url
-  /         br
-  /         .checkbox
-  /           label
-  /             = r.check_box image.id, checked: false
-  /             | Remove image
-
-  / br
-  / .row
-  /   .col-xs-9
-  /     .form-group
-  /       = f.label :images
-  /       .form-control
-  /         .col-xs-1 style="padding-left: 0px; padding-right: 0px;"
-  /           .btn.btn-default.btn-xs
-  /             = f.file_field :images, id: "image-upload", mulitple: true, class: 'fileInput'
-  /             | Browse
-  /         .col-xs-10.col-md-10
-  /           = f.text_field :name, id: "image-name", placeholder: 'Name of File...', style: "border: 0px;"

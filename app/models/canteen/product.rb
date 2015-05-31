@@ -20,6 +20,12 @@ module Canteen
     field :nm, type: String,
       as:         :name
 
+    field :ct, type: String,
+      as:         :category
+
+    field :sct, type: String,
+      as:         :sub_category
+
     field :rp, type: Float,
       as:         :retail_price
 
@@ -37,21 +43,30 @@ module Canteen
     field :ds, type: String,
       as:         :description
 
+    field :dt, type: String,
+      as:         :details
+      
     # Properties
-
-    field :tp, type: String,
-      as:         :type
 
     field :sz, type: String,
       as:         :size
 
-    field :mt, type: String,
-      as:         :material
+    # Flags
+    field :sc, type: Boolean,
+      as:         :showcase
 
+    field :na, type: Boolean,
+      as:         :new_arrival
 
     # Validations
-    validates_presence_of   :name, :sku, :retail_price, :cost_price, :description
+    validates_presence_of   :sku, :name, :category, :sub_category, :retail_price, :cost_price, :description
     validates_uniqueness_of :sku
+
+    #
+    # Scope
+    #
+    scope :showcase, ->{ where(showcase: true) } 
+    scope :new_arrivals, ->{ where(new_arrival: true) } 
 
     public 
 
@@ -63,6 +78,14 @@ module Canteen
       self.discount.nil? ? false : (self.discount > 0)
     end
 
+    def showcase?
+      self.showcase
+    end
+
+    def new_arrival?
+      self.new_arrival
+    end
+
     def sale_price
       return self.retail_price unless self.discount?
       return (self.retail_price * (1-(self.discount.to_f/100))).to_i
@@ -72,5 +95,6 @@ module Canteen
     def image
       self.images.exists? ? self.images.first.file_url : ActionController::Base.new.view_context.image_path('noimagefound.png')
     end
+
   end
 end

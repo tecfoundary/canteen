@@ -65,6 +65,15 @@ section.content
                       = @product.sku
                       |
                   tr
+                    th Description
+                    td #{@product.description}
+                  tr
+                    th Category
+                    td #{@product.category}
+                  tr
+                    th Sub-Category
+                    td #{@product.sub_category}  
+                  tr
                     th
                       | Cost Price:
                     td
@@ -84,16 +93,28 @@ section.content
                       |  %
                   tr
                     th
-                      | Type:
-                    td= @product.type
+                      | Showcase:
+                    td
+                      - if @product.showcase?
+                        i.fa.fa-check
+                      - else
+                        i.fa.fa-times
                   tr
                     th
-                      | Size:
-                    td= @product.size
+                      | New Arrival:
+                    td
+                      - if @product.new_arrival?
+                        i.fa.fa-check
+                      - else
+                        i.fa.fa-times
+                  / tr
+                  /   th
+                  /     | Size:
+                  /   td= @product.size
                   tr
                     th
-                      | Material:
-                    td= @product.material
+                      | Details:
+                    td= @product.details
         .box-footer
           .row
             .col-xs-12

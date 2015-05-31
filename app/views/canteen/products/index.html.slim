@@ -6,27 +6,29 @@ section.content
           h3.box-title
             | Products Data
         .box-body.table-responsive
-          table#product-table.table.table-bordered.table-striped
+          table#product-table.table.table-bordered.table-striped.table-hover
             thead
               tr
                 th= Canteen::Product.human_attribute_name(:sku)
                 th= Canteen::Product.human_attribute_name(:name)
+                th= Canteen::Product.human_attribute_name(:category)
+                th= Canteen::Product.human_attribute_name(:sub_category)
                 th= Canteen::Product.human_attribute_name(:retail_price)
                 th= Canteen::Product.human_attribute_name(:cost_price)
                 th= Canteen::Product.human_attribute_name(:discount)
-                th= Canteen::Product.human_attribute_name(:type)
-                th= Canteen::Product.human_attribute_name(:size)
-                th= Canteen::Product.human_attribute_name(:material)
-                th
+                th= Canteen::Product.human_attribute_name(:description)
+                / th
             tbody
               - @products.each do |p|
-                tr
+                tr id="#{product_path(p)}" class=row_class(p)
                   td= p.sku
                   td= p.name
+                  td= p.category
+                  td= p.sub_category
                   td=p.retail_price
                   td=p.cost_price
-                  td=p.discount
-                  td=p.type
-                  td=p.size
-                  td=p.material
-                  td style="margin-left: auto; margin-right: auto;"= link_to t('Show'), product_path(p), class: 'btn btn-sm btn-primary'
+                  td
+                    = p.discount
+                    ' %
+                  td=p.description
+                  / td style="margin-left: auto; margin-right: auto;"= link_to t('Show'), product_path(p), class: 'btn btn-sm btn-primary'

@@ -7,3 +7,7 @@ section.content
             | Product Details
         = form_for :product, url: products_path, role: 'form' do |f|
           = render partial: 'form', locals: { f: f }
+
+javascript:
+  var categories = #{raw Canteen::Product.distinct(:category)};
+  var sub_categories = #{raw Canteen::Product.distinct(:sub_category)};
