@@ -18,6 +18,11 @@ Canteen::Engine.routes.draw do
   resource :dashboard
 
   scope module: 'store' do
-    resources :products, as: 'store', path: '/'
+    resources :products, as: 'store', path: '/' do
+      collection do
+        get 'category'
+      end
+    end
+
   end
 end

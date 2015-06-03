@@ -15,15 +15,19 @@
               |  New Arrival
    
       .form-group
-          = f.label :sku
-          = f.text_field :sku, placeholder: 'Enter ...', class: 'form-control'
+        = f.label :sku
+        = f.text_field :sku, placeholder: 'Enter ...', class: 'form-control'
       .form-group
-          = f.label :description
-          = f.text_field :description, placeholder: 'Enter ...', class: 'form-control'
+        = f.label :brand
+        div#brand
+          = f.text_field :brand, placeholder: 'Enter ...', class: 'form-control typeahead'
       .form-group
-          = f.label :category 
-          div#category
-            = f.text_field :category, placeholder: 'Category ...', class: 'form-control typeahead'
+        = f.label :description
+        = f.text_field :description, placeholder: 'Enter ...', class: 'form-control'
+      .form-group
+        = f.label :category 
+        div#category
+          = f.text_field :category, placeholder: 'Category ...', class: 'form-control typeahead'
       .form-group
         = f.label :sub_category    
         div#sub-category
@@ -55,7 +59,7 @@
     .col-xs-6
       .form-group
         = f.label :details
-        = f.text_area :details, placeholder: 'Enter ...', rows: '27', class: 'form-control'
+        = f.text_area :details, placeholder: 'Enter ...', rows: '34', class: 'form-control'
       / .form-group
       /   = f.label :size
       /   = f.text_area :size, placeholder: 'Enter ...', rows: '16', class: 'form-control'

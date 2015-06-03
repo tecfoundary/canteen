@@ -89,7 +89,7 @@ module Canteen
     private
 
     def product_params
-      params.require(:product).permit(:name, :sku, :category, :sub_category, :cost_price, :retail_price, :discount, :description, :details, :size, :showcase, :new_arrival, :destroy_image, :images => [])
+      params.require(:product).permit(:name, :sku, :brand, :category, :sub_category, :cost_price, :retail_price, :discount, :description, :details, :size, :showcase, :new_arrival, :destroy_image, :images => [])
     end
   
   end

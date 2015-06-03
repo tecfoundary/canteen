@@ -10,3 +10,4 @@ section.content
 javascript:
   var categories = #{raw Canteen::Product.distinct(:category)};
   var sub_categories = #{raw Canteen::Product.where(category: @product.category).distinct(:sub_category)};
+  var brands = #{raw Canteen::Product.distinct(:brand)};

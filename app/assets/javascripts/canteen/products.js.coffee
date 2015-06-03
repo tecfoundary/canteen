@@ -31,6 +31,7 @@ jQuery ->
 
   $('#category .typeahead').typeahead {hint: true, highlight: true, minLength: 1}, {name: 'categories', source: substringMatcher(categories)}
   $('#sub-category .typeahead').typeahead {hint: true, highlight: true, minLength: 1}, {name: 'sub-categories', source: substringMatcher(sub_categories)}
+  $('#brand .typeahead').typeahead {hint: true, highlight: true, minLength: 1}, {name: 'brands', source: substringMatcher(brands)}
 
 
 

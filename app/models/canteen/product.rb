@@ -20,6 +20,9 @@ module Canteen
     field :nm, type: String,
       as:         :name
 
+    field :bd, type: String,
+      as:         :brand
+
     field :ct, type: String,
       as:         :category
 
@@ -59,7 +62,7 @@ module Canteen
       as:         :new_arrival
 
     # Validations
-    validates_presence_of   :sku, :name, :category, :sub_category, :retail_price, :cost_price, :description
+    validates_presence_of   :sku, :name, :brand, :category, :sub_category, :retail_price, :cost_price, :description
     validates_uniqueness_of :sku
 
     #
@@ -95,6 +98,5 @@ module Canteen
     def image
       self.images.exists? ? self.images.first.file_url : ActionController::Base.new.view_context.image_path('noimagefound.png')
     end
-
   end
 end
